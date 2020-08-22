@@ -1,0 +1,26 @@
+.child-fix{
+  float:right;
+  width:20%;
+
+}
+.parent-fix{
+  float:right;
+  width:100%;
+  color:white;
+}
+
+
+
+.Toggle:hover {
+  color: rgb(0, 221, 255);
+}
+
+.Toggle:focus {
+  color: rgb(0, 221, 255);
+}
+
+.header {
+ top:0;
+  /* position: fixed;
+  top: 0; */
+}
