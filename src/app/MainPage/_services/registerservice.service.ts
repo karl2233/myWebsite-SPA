@@ -1,9 +1,19 @@
 import { Injectable } from '@angular/core';
 import { RegisterReq } from '../_model/_req/RegisterReq';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
-import { take, tap, switchMap } from 'rxjs/operators';
+import { take, tap, switchMap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { RegisterResp } from '../_model/_resp/RegisterResp';
+import { Registerstatus } from '../_model/_resp/Registerstatus';
+import { Observable } from 'rxjs';
 
+interface RespStatus {
+  status: status;
+}
+interface status {
+  statusReason: string;
+  statusCode: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -24,15 +34,18 @@ addRegister(email:string,password:string,confirmPassword:string,username:string)
   confirmPassword,
   username
   );
+  console.log(newRegReq.email);
   return this.http
-  .post<{ name: string }>(
+  .post<RespStatus>(
     this.baseUrl+'register/addregister',
     { ...newRegReq,headers:this.getArgHeaders() }
   )
   .pipe(
-    switchMap(resData => {
-      generatedId = resData.name;
-      return null;
+    map(resData => {
+    return new RegisterResp(
+        new Registerstatus(resData.status.statusReason, resData.status.statusCode)
+      );
+    
     }),
     take(1),
     tap(bookings => {

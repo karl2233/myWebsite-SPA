@@ -19,7 +19,7 @@ export class MainPageRegisterComponent implements OnInit {
   model:any = {};
   emailPattern ="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   passwordPattern=new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-  constructor(private registerService:RegisterserviceService,private fb:FormBuilder) {}
+  constructor(private registerService:RegisterserviceService,private fb:FormBuilder,private alertify: AlertifyService) {}
 
   ngOnInit() {
     this.createRegisterForm();
@@ -35,7 +35,12 @@ export class MainPageRegisterComponent implements OnInit {
   register(){
    if(this.registerForm.valid){
        this.registerService.addRegister(this.registerForm.value.email,this.registerForm.value.password,this.registerForm.value.confirmPassword,this.registerForm.value.username).subscribe((data)=>{
-
+if(data.status.statusCode==0){
+  this.alertify.warning(data.status.statusReason);
+}
+else{
+  this.alertify.success(data.status.statusReason);
+}
      }),error=>{
 
       }

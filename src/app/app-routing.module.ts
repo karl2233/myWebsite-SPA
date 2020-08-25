@@ -7,7 +7,8 @@ import { MainPageInfoComponent } from './MainPage/MainPageInfo/MainPageInfo.comp
 
 
 const routes: Routes = [
-  {path: '', component: MainPageComponent,
+  {
+  path: '', component: MainPageComponent,
   children:[
     {
       path : '',
@@ -24,7 +25,9 @@ const routes: Routes = [
   { path: '**', redirectTo: '', pathMatch: 'full' }
 
   ]
-}];
+}
+
+];
 
 
 @NgModule({
