@@ -7,12 +7,17 @@ import { MainPageComponent } from './MainPage/MainPage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainPageRegisterComponent } from './MainPage/MainPageRegister/MainPageRegister.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfirmRegisterComponent } from './ConfirmRegister/confirm-register/confirm-register.component';
+import { ConfirmRegisteResolver } from './ConfirmRegister/_resolvers/confirmregister-resolver';
+import { MainPageLoginComponent } from './MainPage/MainPageLogin/MainPageLogin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
       MainPageComponent,
-      MainPageRegisterComponent
+      MainPageRegisterComponent,
+      ConfirmRegisterComponent,
+      MainPageLoginComponent
    ],
   imports: [
     BrowserModule,
@@ -22,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
 
   ],
-  providers: [],
+  providers: [ConfirmRegisteResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

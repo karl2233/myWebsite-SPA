@@ -4,6 +4,8 @@ import { MainPageComponent } from './MainPage/MainPage.component';
 import { MainPageLoginComponent } from './MainPage/MainPageLogin/MainPageLogin.component';
 import { MainPageRegisterComponent } from './MainPage/MainPageRegister/MainPageRegister.component';
 import { MainPageInfoComponent } from './MainPage/MainPageInfo/MainPageInfo.component';
+import { ConfirmRegisterComponent } from './ConfirmRegister/confirm-register/confirm-register.component';
+import { ConfirmRegisteResolver } from './ConfirmRegister/_resolvers/confirmregister-resolver';
 
 
 const routes: Routes = [
@@ -22,10 +24,15 @@ const routes: Routes = [
     path : 'subscribe',
     component: MainPageRegisterComponent,
     },
+  ]
+},
+{
+  path: 'confirmregister/:token',
+  component: ConfirmRegisterComponent,
+  resolve: { registerstatus: ConfirmRegisteResolver }
+ },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 
-  ]
-}
 
 ];
 

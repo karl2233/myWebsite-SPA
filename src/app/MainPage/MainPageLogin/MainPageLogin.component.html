@@ -1,3 +1,50 @@
-<p>
-  MainPageLogin works!
-</p>
+
+<br>
+<br>
+
+<form [formGroup]="loginForm"(ngSubmit)="login()" class="text-center border border-light p-5" action="#!">
+
+  <p class="h4 mb-4">Login</p>
+
+
+  <div class="form-group">
+    <input type="text"
+    [ngClass]="{'is-invalid':loginForm.get('email').errors
+    && loginForm.get('email').touched}"
+    class="form-control"
+     formControlName="email"
+     placeholder="Email">
+     <div class="invalid-feedback">Choose a coorect Email</div>
+  </div>
+
+  <div  class="form-group">
+    <input type="password"
+    [ngClass]="{'is-invalid':loginForm.get('password').errors
+    && loginForm.get('password').touched}"
+     class="form-control"
+     formControlName="password"
+      placeholder="Password">
+
+<div class="invalid-feedback" style="text-align:left;margin:0 auto;" id="outer">
+  <div style="text-align:left;margin:0 auto;" id="inner">
+• The password must contain at least 1 lowercase alphabetical character<br>
+• The password must contain at least 1 uppercase alphabetical character<br>
+• The password must contain at least 1 numeric character<br>
+• The password must contain at least one special character<br>
+• The password must be eight characters or longer<br>
+</div>
+</div>
+
+
+
+</div>
+
+
+
+  <!-- Sign in button -->
+  <button class="btn btn-info" type="submit">Login</button>
+
+
+  <!-- Social login -->
+</form>
+

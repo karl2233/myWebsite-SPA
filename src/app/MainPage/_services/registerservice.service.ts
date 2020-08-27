@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import { RegisterResp } from '../_model/_resp/RegisterResp';
 import { Registerstatus } from '../_model/_resp/Registerstatus';
 import { Observable } from 'rxjs';
+import { LoginReq } from '../_model/_req/LoginReq';
+import { LoginResp } from '../_model/_resp/LoginResp';
 
 interface RespStatus {
   status: status;
@@ -13,6 +15,15 @@ interface RespStatus {
 interface status {
   statusReason: string;
   statusCode: number;
+}
+interface LoginRespStatus{
+  status: LoginStatus;
+}
+interface LoginStatus{
+  statusReason: string;
+  statusCode: number;
+  userName:string;
+  token:string;s
 }
 
 @Injectable({
@@ -53,6 +64,34 @@ addRegister(email:string,password:string,confirmPassword:string,username:string)
     })
   );
   }
+
+  login(email:string,password:string){
+
+    let generatedId: string;
+    const loginReq = new LoginReq(
+    email,
+    password,
+    );
+    return this.http
+    .post<LoginRespStatus>(
+      this.baseUrl+'register/signin',
+      { ...loginReq,headers:this.getArgHeaders() }
+    )
+    .pipe(
+      map(resData => {
+        console.log("1");
+        return new LoginResp(resData.status.statusReason,resData.status.statusCode,resData.status.userName,resData.status.token);
+      // return new RegisterResp(
+      //     new Registerstatus(resData.status.statusReason, resData.status.statusCode)
+      //   );
+      
+      }),
+      take(1),
+      tap(bookings => {
+  
+      })
+    );
+    }
 
   private getArgHeaders(): any {
     const httpOptions = {
