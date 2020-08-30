@@ -15,19 +15,18 @@ export class ConfirmRegisterComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-   
+
     this.route.data.subscribe(data => {
-   
-      
+
+
 this.statusReason = data['registerstatus']['status']['statusReason'];
 if(data['registerstatus']['status']['statusCode']){
 this.errorCode=true;
 }else{
   this.errorCode=false;
 }
-      
+
     });
-  console.log(this.errorCode);
   }
 
 }

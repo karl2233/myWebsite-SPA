@@ -13,7 +13,7 @@ confirm(message:string,okCallback:() => any){
     if(e){
       okCallback();
     }else{}
-    
+
   });
 }
 success(message:string){

@@ -6,6 +6,10 @@ import { MainPageRegisterComponent } from './MainPage/MainPageRegister/MainPageR
 import { MainPageInfoComponent } from './MainPage/MainPageInfo/MainPageInfo.component';
 import { ConfirmRegisterComponent } from './ConfirmRegister/confirm-register/confirm-register.component';
 import { ConfirmRegisteResolver } from './ConfirmRegister/_resolvers/confirmregister-resolver';
+import { AdminMainPageComponent } from './AdminMainPage/AdminMainPage.component';
+import { AdminPageComponent } from './AdminPage/AdminPage.component';
+import { SendNotificationComponent } from './AdminPage/SendNotification/SendNotification.component';
+
 
 
 const routes: Routes = [
@@ -31,6 +35,33 @@ const routes: Routes = [
   component: ConfirmRegisterComponent,
   resolve: { registerstatus: ConfirmRegisteResolver }
  },
+ {
+  path: 'adminlogin',
+  component: AdminMainPageComponent
+ },
+
+ {
+  path: 'admin',
+  component: AdminPageComponent,
+  children:[
+    {
+      path : 'sendnotification',
+      component: SendNotificationComponent,
+    }
+  ]
+
+ },
+//  {
+//   path: 'admin',
+//   component: AdminPageComponent,
+//   children:[
+//     {
+//       path : 'sendnotification',
+//       component: SendingNotificationComponent,
+//       }
+//   ]
+
+//  },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 
 

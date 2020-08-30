@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageInfoComponent implements OnInit {
 
+  theHtmlString:String;
+
   constructor() { }
 
   ngOnInit() {

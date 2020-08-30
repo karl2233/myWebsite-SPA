@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +12,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfirmRegisterComponent } from './ConfirmRegister/confirm-register/confirm-register.component';
 import { ConfirmRegisteResolver } from './ConfirmRegister/_resolvers/confirmregister-resolver';
 import { MainPageLoginComponent } from './MainPage/MainPageLogin/MainPageLogin.component';
+import { AdminMainPageComponent } from './AdminMainPage/AdminMainPage.component';
+import { AdminPageComponent } from './AdminPage/AdminPage.component';
+import { SendNotificationComponent } from './AdminPage/SendNotification/SendNotification.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -17,14 +25,18 @@ import { MainPageLoginComponent } from './MainPage/MainPageLogin/MainPageLogin.c
       MainPageComponent,
       MainPageRegisterComponent,
       ConfirmRegisterComponent,
-      MainPageLoginComponent
+      MainPageLoginComponent,
+      AdminMainPageComponent,
+      AdminPageComponent,
+      SendNotificationComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
 
   ],
   providers: [ConfirmRegisteResolver],

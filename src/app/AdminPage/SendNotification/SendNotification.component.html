@@ -1,0 +1,24 @@
+
+<body  style="margin:0;padding:0">
+  <form [formGroup]="loginForm"(ngSubmit)="login()" class="text-center border border-light p-5" action="#!">
+
+    <p class="h4 mb-4">Admin Login</p>
+
+
+    <div class="form-group">
+      <input class="form-control form-control-lg" type="text" placeholder="Notification Title"  formControlName="title">
+    </div>
+
+
+  <div class="form-group">
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+
+    <!-- Sign in button -->
+    <button class="btn btn-info" type="submit">Admin Login</button>
+
+
+    <!-- Social login -->
+  </form>
+
+  </body>

@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { RegisterReq } from '../_model/_req/RegisterReq';
-import {HttpClient, HttpHeaders } from '@angular/common/http';
-import { take, tap, switchMap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RegisterReq } from '../_model/_req/RegisterReq';
+import { map, take, tap } from 'rxjs/operators';
 import { RegisterResp } from '../_model/_resp/RegisterResp';
 import { Registerstatus } from '../_model/_resp/Registerstatus';
-import { Observable } from 'rxjs';
 import { LoginReq } from '../_model/_req/LoginReq';
 import { LoginResp } from '../_model/_resp/LoginResp';
-
 interface RespStatus {
   status: status;
 }
@@ -29,7 +27,7 @@ interface LoginStatus{
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterserviceService {
+export class AdminregisterService {
 
   baseUrl = environment.apiUrl ;
 
@@ -73,7 +71,7 @@ addRegister(email:string,password:string,confirmPassword:string,username:string)
     );
     return this.http
     .post<LoginRespStatus>(
-      this.baseUrl+'register/signin',
+      this.baseUrl+'register/adminsignin',
       { ...loginReq,headers:this.getArgHeaders() }
     )
     .pipe(
