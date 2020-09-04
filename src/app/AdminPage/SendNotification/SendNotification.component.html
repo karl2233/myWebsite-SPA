@@ -1,17 +1,17 @@
 
 <body  style="margin:0;padding:0">
-  <form [formGroup]="loginForm"(ngSubmit)="login()" class="text-center border border-light p-5" action="#!">
+  <form [formGroup]="Notification"(ngSubmit)="sendNotification()" class="text-center border border-light p-5" action="#!">
 
     <p class="h4 mb-4">Admin Login</p>
 
 
     <div class="form-group">
-      <input class="form-control form-control-lg" type="text" placeholder="Notification Title"  formControlName="title">
+      <input class="form-control form-control-lg" type="text" placeholder="Title"  formControlName="notificationTitle">
     </div>
 
 
   <div class="form-group">
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Body" formControlName="notificationBody" rows="3"></textarea>
   </div>
 
     <!-- Sign in button -->

@@ -1,0 +1,12 @@
+.row{
+  margin: auto;
+  width: 60%;
+}
+.spinner-center{
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.outer-spinner{
+  text-align: center;
+}

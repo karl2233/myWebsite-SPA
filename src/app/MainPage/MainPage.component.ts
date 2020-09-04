@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./MainPage.component.css']
 })
 export class MainPageComponent implements OnInit {
-
+  public isCollapsed = true;
   constructor() { }
 
   ngOnInit() {
@@ -14,6 +14,9 @@ export class MainPageComponent implements OnInit {
   }
 
 
+  home(){
+
+  }
 
 
 }

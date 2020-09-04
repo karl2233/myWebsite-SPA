@@ -1,0 +1,13 @@
+.card-body{
+    float:left;
+  }
+  .daizy{
+    margin-left:200px;
+  }
+  
+  @media screen and (max-width:600px){
+    .no-overflow{
+        display:none;
+    }
+  }
+  

@@ -1,0 +1,62 @@
+<!-- <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+  <div class="ex1"
+  infiniteScroll
+  [scrollWindow]="false"
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="1000"
+  (scrolled)="onScroll()"
+  >
+  
+      <div *ngFor="let item of loadedItems">
+     
+  
+    </div>
+    
+    <div class="w3-container ">
+      <div class="spinner-border" *ngIf="loading" role="status">
+       
+      </div>
+    </div>
+  
+      
+       
+      </div>
+    </div> -->
+
+    <!-- <ngx-spinner></ngx-spinner> -->
+    
+<!-- 
+
+<h2>Animated Sidenav Example</h2>
+<p>Click on the element below to open the side navigation menu.</p>
+<span style="font-size:20px;cursor:pointer" (click)="openNav()">&#9776; open</span> -->
+<br>
+<div clas="row">
+  <div *ngFor="let item of loadedItems">
+  <div class="col-sm-12 " >
+    <header class="w3-container w3-light-grey">
+      <h5>John Doe</h5>
+    </header>
+    <div class="w3-container">
+      <img src="../../../assets/images/ee.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+      <p>CEO at Mighty Schools. Marketing and Advertising. Seeking a new job and new opportunities.</p><br>
+    </div>
+
+    <br>
+  </div> 
+</div>
+
+<div class="col-sm-12 outer-spinner" *ngIf="loading" >
+    <div class="spinner-border spinner-center"  role="status">
+       
+    </div>
+  </div>
+
+  <div 
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="1000"
+  (scrolled)="onScroll()">
+
+  </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AdminregisterService } from './_services/adminregister.service';
 import { AlertifyService } from '../_services/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-AdminMainPage',
@@ -16,7 +17,7 @@ export class AdminMainPageComponent implements OnInit {
   model:any = {};
   emailPattern ="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   passwordPattern=new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-  constructor(private adminregisterService:AdminregisterService,private fb:FormBuilder,private alertify: AlertifyService) {}
+  constructor(private adminregisterService:AdminregisterService,private fb:FormBuilder,private alertify: AlertifyService,private router: Router) {}
 
   ngOnInit() {
     this.createRegisterForm();
@@ -39,6 +40,7 @@ export class AdminMainPageComponent implements OnInit {
  else{
   localStorage.setItem('token',data.token);
    this.alertify.success(data.statusReason);
+   this.router.navigate(['/admin/sendnotification']);
  }
       }),error=>{
 

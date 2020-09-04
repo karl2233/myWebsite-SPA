@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
+import { AdminServiceService } from '../_services/admin-service.service';
+
 @Component({
   selector: 'app-SendNotification',
   templateUrl: './SendNotification.component.html',
@@ -9,22 +11,24 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 export class SendNotificationComponent implements OnInit {
 
 
-  loginForm:FormGroup;
+  Notification:FormGroup;
 
-  constructor(private fb:FormBuilder) {}
+  constructor(private fb:FormBuilder,private adminService:AdminServiceService) {}
 
   ngOnInit() {
     this.createRegisterForm();
     }
   createRegisterForm(){
 
-    this.loginForm = this.fb.group({
-      title:new FormControl()
+    this.Notification = this.fb.group({
+      notificationTitle:new FormControl(),
+      notificationBody:new FormControl()
   })
 }
 
-  login(){
-console.log(this.loginForm.value.title);
+  sendNotification(){
+console.log(this.Notification.value.notificationTitle); 
+this.adminService.sendNotification(this.Notification.value.notificationTitle,this.Notification.value.notificationBody);
     }
 
 }
