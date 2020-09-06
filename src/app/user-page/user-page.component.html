@@ -1,24 +1,30 @@
 <nav class ="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <a class="navbar-brand" href="access">XXXX</a>
-    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]>
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand"  routerLink="/access"  href="#">XXXX</a>
+  <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]>
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse " id="collapseExample" [ngbCollapse]="isCollapsed">
-      <ul class="navbar-nav mr-auto ">
-        <li class="nav-item-active ">
-          <a class="nav-link parent-fix" href="access/notificationlist">Notification List<span class="material-icons child-fix">
-            format_list_bulleted
-            </span></a>
+  <div class="collapse navbar-collapse " id="collapseExample" [ngbCollapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto ">
 
-        </li>
+    <li class="nav-item ">
+      <a class="nav-link parent-fix Toggle" href="#" routerLink="/access/notificationlist"   >List Notification<span class="material-icons child-fix">
+        perm_identity
+        </span></a>
+    </li>
 
 
-      </ul>
-    </div>
+    <li class="nav-item ">
+      <a class="nav-link parent-fix Toggle" (click)="onclick()" >List Notification<span class="material-icons child-fix">
+        perm_identity
+        </span></a>
+    </li>
+
+    </ul>
+  </div>
 
 
 </nav>
 
-<router-outlet></router-outlet> 
+<router-outlet></router-outlet>

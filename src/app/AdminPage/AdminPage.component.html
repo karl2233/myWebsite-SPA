@@ -1,56 +1,29 @@
+
 <nav class ="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <a class="navbar-brand" href="#">Admin</a>
-    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]>
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand" href="#">XXXX</a>
+  <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]>
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse " id="collapseExample" [ngbCollapse]="isCollapsed">
-      <ul class="navbar-nav mr-auto ">
-        <li class="nav-item-active ">
-          <a class="nav-link parent-fix" (click)="home()">Send Notifications<span class="material-icons child-fix">
-            control_point
-            </span></a>
+  <div class="collapse navbar-collapse " id="collapseExample" [ngbCollapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto ">
+      <li class="nav-item ">
+        <a class="nav-link parent-fix Toggle"(click)="sendNotification()"  >Send notification<span class="material-icons child-fix">
+          local_post_office
+          </span></a>
+     </li>
 
-        </li>
 
+    <li class="nav-item ">
+      <a class="nav-link parent-fix Toggle"  (click)="listNotification()"    >List notification<span class="material-icons child-fix">
+        format_list_bulleted
+        </span></a>
+    </li>
 
-      </ul>
-    </div>
+    </ul>
+  </div>
 
 
 </nav>
-
-<!--
-<div class="navbar-wrapper">
-  <div class="container">
-
-    <nav class="navbar navbar-inverse navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-                <li><a href="">Page 1</a>
-                </li>
-                <li><a href="">Page 2</a>
-                </li>
-                <li><a href="">Page 3</a>
-                </li>
-
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-  </div>
-</div> -->
-
 <router-outlet></router-outlet>

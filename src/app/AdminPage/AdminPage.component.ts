@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-AdminPage',
@@ -9,12 +10,16 @@ export class AdminPageComponent implements OnInit {
 
   public isCollapsed = true;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
-  home(){
+  sendNotification(){
+    this.router.navigate(['/admin/sendnotification']);
+  }
 
+  listNotification(){
+    this.router.navigate(['/admin/listnotification']);
   }
 
 }
