@@ -1,44 +1,28 @@
+
 <br>
-<div>
+<div class="container">
+  <div *ngFor="let item of loadedItems">
 
-  <div class="col-sm-12 " >
-    <header class="w3-container w3-light-grey">
-      <h5>John Doe</h5>
-    </header>
-    <div class="w3-container">
-      <img src="../../../assets/images/ee.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-      <p>CEO at Mighty Schools. Marketing and Advertising. Seeking a new job and new opportunities.</p><br>
-    </div>
+    <div *ngIf="item.notificationCheck;else content" class="w3-panel w3-card w3-green" ><h4>{{item.notificationId}}</h4>
 
     <br>
-  </div>
+  </div> 
 
-  <div class="col-sm-12 " >
-    <header class="w3-container w3-light-grey">
-      <h5>John Doe</h5>
-    </header>
-    <div class="w3-container">
-      <img src="../../../assets/images/ee.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-      <p>CEO at Mighty Schools. Marketing and Advertising. Seeking a new job and new opportunities.</p><br>
-    </div>
+  <ng-template #content><div class="w3-panel w3-card-2 w3-grey" ><h4>{{item.notificationId}}</h4><br></div></ng-template>
+  
+</div>
 
-    <br>
-  </div>
-  <div class="col-sm-12 " >
-    <header class="w3-container w3-light-grey">
-      <h5>John Doe</h5>
-    </header>
-    <div class="w3-container">
-      <img src="../../../assets/images/ee.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-      <p>CEO at Mighty Schools. Marketing and Advertising. Seeking a new job and new opportunities.</p><br>
-    </div>
-
-    <br>
-  </div>
-  <div class="col-sm-12 outer-spinner" >
+<div class="col-sm-12 outer-spinner" *ngIf="loading" >
     <div class="spinner-border spinner-center"  role="status">
        
     </div>
   </div>
-  
-</div>
+
+  <div 
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="1000"
+  (scrolled)="onScroll()">
+
+  </div>
+

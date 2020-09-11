@@ -14,6 +14,7 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { UserNotificationListComponent } from './user-page/user-notification-list/user-notification-list.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserMainPageComponent } from './user-page/user-main-page/user-main-page.component';
+import { AddProjectComponent } from './AdminPage/add-project/add-project.component';
 
 
 
@@ -65,9 +66,9 @@ component:UserMainPageComponent
  {
   path: 'admin',
   runGuardsAndResolvers:'always',
- canActivate:[AuthGuard],
-  component: AdminPageComponent,
   data:{roles:['ADMIN']},
+  canActivate:[AuthGuard],
+  component: AdminPageComponent,
   children:[
     {
       path : 'sendnotification',
@@ -76,6 +77,10 @@ component:UserMainPageComponent
     {
       path:'listnotification',
       component:ListNotificationComponent
+    },
+    {
+      path : 'addproject',
+      component: AddProjectComponent,
     }
   ]
 

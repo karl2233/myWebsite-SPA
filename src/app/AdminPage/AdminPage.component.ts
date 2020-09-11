@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { WebSocketAPIService } from '../_services/web-socket-api.service';
 
 @Component({
   selector: 'app-AdminPage',
@@ -10,9 +11,10 @@ export class AdminPageComponent implements OnInit {
 
   public isCollapsed = true;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private webSocketAPI:WebSocketAPIService) { }
 
   ngOnInit() {
+    this.webSocketAPI._connect();
   }
   sendNotification(){
     this.router.navigate(['/admin/sendnotification']);

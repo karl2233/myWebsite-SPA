@@ -14,6 +14,8 @@ export class ListNotificationComponent implements OnInit {
  private bookingSub:Subscription;
  loading:boolean;
  public innerWidth: any;
+
+ public index:number = 15;
   constructor(private adminServiceService: AdminServiceService,private spinner: NgxSpinnerService) {
     
    }
@@ -24,26 +26,18 @@ export class ListNotificationComponent implements OnInit {
     this.adminServiceService.getListOfNotification(0)
   this.bookingSub =  this.adminServiceService.notifications.subscribe(karl=>{
     this.loadedItems = karl;
-  //  console.log(karl);
     });
     this.innerWidth = window.innerWidth;
-    //this.adminServiceService.getListOfNotification(0);
   }
 
 
   onScroll(){
-  console.log("worked");
+    this.index = this.index +15;
   if(this.loadedItems[this.loadedItems.length - 1].notificationId == 1){
     this.loading = false;
     return true;
   }
   this.adminServiceService.getListOfNotification(this.loadedItems[this.loadedItems.length - 1].notificationId);
-  console.log(this.loadedItems[this.loadedItems.length - 1]);
+ // this.adminServiceService.getListOfNotification(this.index);
 }
-
-// @HostListener('window:resize', ['$event'])
-// onResize(event) {
-//   this.innerWidth = window.innerWidth;
-//   console.log(this.innerWidth);
-// }
 }

@@ -1,0 +1,27 @@
+
+<body  style="margin:0;padding:0">
+    <form [formGroup]="Notification"(ngSubmit)="sendProject()" class="text-center border border-light p-5" action="#!">
+  
+      <p class="h4 mb-4">Admin Login</p>
+  
+  
+      <div class="form-group">
+        <input class="form-control form-control-lg" type="text" placeholder="Project name"  formControlName="projectName">
+      </div>
+      <div class="form-group">
+        <input class="form-control form-control-lg" type="text" placeholder="User name"  formControlName="userName">
+      </div>
+      <div class="form-group">
+      <input class="form-control form-control-lg" type="number" required name="price" min="0" value="0" step="0.1" formControlName="projectPrice">
+      </div>
+  
+  
+  
+      <!-- Sign in button -->
+      <button class="btn btn-info" type="submit">Admin Login</button>
+  
+      <!-- Social login -->
+    </form>
+  
+    </body>
+  

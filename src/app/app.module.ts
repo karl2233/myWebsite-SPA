@@ -21,6 +21,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { UserPageComponent } from './user-page/user-page.component';
 import { UserNotificationListComponent } from './user-page/user-notification-list/user-notification-list.component';
 import { UserMainPageComponent } from './user-page/user-main-page/user-main-page.component';
+import { AddProjectComponent } from './AdminPage/add-project/add-project.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -40,7 +41,8 @@ export function tokenGetter() {
       ListNotificationComponent,
       UserPageComponent,
       UserNotificationListComponent,
-      UserMainPageComponent
+      UserMainPageComponent,
+      AddProjectComponent
    ],
   imports: [
     BrowserModule,

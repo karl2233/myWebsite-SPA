@@ -7,8 +7,14 @@ import { environment } from 'src/environments/environment';
 import { SendNotificationReq } from '../_model/_req/SendNotificationReq';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { NotificationElementResp } from '../_model/_resp/NotificationElementResp';
+import { ProjectAddReq } from '../_model/_req/ProjectAddReq';
 interface status{
-  status: String;
+  status: NotficationStatus;
+}
+interface NotficationStatus{
+  notificationStatus:number;
+  notificationStatusReason:string;
+  lastInsertedNotificationId:number;
 }
 
 interface notificationElement{
@@ -20,6 +26,14 @@ interface notificationElement{
 interface notificationElements{
   notificationElements:notificationElement[];
 }
+
+interface successnotification{
+  status:number;
+}
+
+interface projectAddSuccess{
+  status:boolean
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -28,7 +42,7 @@ interface notificationElements{
 export class AdminServiceService {
   private _notifications = new BehaviorSubject<NotificationElementResp[]>([]);
 
-  baseUrl = environment.apiUrl ;
+  baseUrl = environment.apiUrl + 'admin' ;
 
   constructor(private http:HttpClient) { }
   
@@ -44,25 +58,16 @@ export class AdminServiceService {
       notificationHeader,
       notificationBody,
     );
-    console.log("3");
     return this.http
-    .post<status>(
+    .post<successnotification>(
       'http://localhost:8080/admin/SendNotification',
       { ...sendNotification,headers:this.getArgHeaders() }
     )
     .pipe(
       map(resData => {
-       
-        //return new SendNotificationResp(resData.status.statusCode,resData.status.statusReason);
-      }),
-      take(1),
-      tap(bookings => {
-  
+        return resData;
       })
-    ).subscribe({
-      //next: data => this.postId = data.id,
-      error: error => console.error('There was an error!', error)
-  });
+    )
     }
 
 
@@ -80,24 +85,34 @@ export class AdminServiceService {
         }
         const currentItems = this._notifications.getValue();
         this._notifications.next( currentItems.concat(arr));
-        //return new SendNotificationResp(resData.status.statusCode,resData.status.statusReason);
       }),
       take(1),
       tap(bookings => {
-        
-       
-        // for(let i = 0; i < bookings.length; i++){ 
-        //   console.log(bookings[i]);
-        //   }
       })
     ).subscribe({
-      //next: data => this.postId = data.id,
       error: error => console.error('There was an error!', error)
   });
   }
 
 
-  
+  sendProjectToUser(usernName:string,projectName:string,projectPrice:number){
+    const projectAddRequest = new ProjectAddReq(
+      projectName,
+      projectPrice,
+      usernName
+    );
+
+    return this.http
+    .post<projectAddSuccess>(
+      this.baseUrl+'/addProject',
+      { ...projectAddRequest,headers:this.getArgHeaders() }
+    )
+    .pipe(
+      map(resData => {
+        console.log(resData.status);
+      })
+    )
+  }
   
     private getArgHeaders(): any {
       const httpOptions = {

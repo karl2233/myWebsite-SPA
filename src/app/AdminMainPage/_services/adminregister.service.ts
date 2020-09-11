@@ -21,7 +21,7 @@ interface LoginStatus{
   statusReason: string;
   statusCode: number;
   userName:string;
-  token:string;s
+  token:string;
 }
 
 @Injectable({

@@ -1,6 +1,6 @@
-.row{
+.container{
   margin: auto;
-  width: 60%;
+  width: 50%;
 }
 .spinner-center{
   display: inline-block;
