@@ -22,6 +22,7 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { UserNotificationListComponent } from './user-page/user-notification-list/user-notification-list.component';
 import { UserMainPageComponent } from './user-page/user-main-page/user-main-page.component';
 import { AddProjectComponent } from './AdminPage/add-project/add-project.component';
+import { ListItemsComponent } from './user-page/ListItems/ListItems.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -42,7 +43,8 @@ export function tokenGetter() {
       UserPageComponent,
       UserNotificationListComponent,
       UserMainPageComponent,
-      AddProjectComponent
+      AddProjectComponent,
+      ListItemsComponent
    ],
   imports: [
     BrowserModule,
@@ -56,8 +58,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
          tokenGetter,
-         allowedDomains: ['localhost:4800'],
-         disallowedRoutes: ['localhost:4800/api/auth']
+         allowedDomains: ['localhost:8080'],
+         disallowedRoutes: ['localhost:8080/register/*']
       }
     }),
 

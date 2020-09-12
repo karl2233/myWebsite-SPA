@@ -1,0 +1,33 @@
+
+ <div class="container">
+
+  <ul class="list-group">
+  <div *ngFor="let item of Items">
+    <li class="list-group-item" *ngIf="item.projectPayed;else content">
+
+    <div class="card " >
+      <div class="card-body">
+        <h5 class="card-title">Project name: {{item.projectName}}</h5>
+        <h5 class="card-text">Project price :{{item.projectPrice}} </h5>
+        <button type="button" class="btn btn-secondary float-right">Payment Complete</button>
+      </div>
+    </div>
+
+</li>
+<ng-template #content>   <li class="list-group-item">
+
+  <div class="card ">
+    <div class="card-body">
+      <h5 class="card-title">Project name: {{item.projectName}}</h5>
+      <h5 class="card-text">Project price :{{item.projectPrice}} </h5>
+
+      <button type="button" class="btn btn-success float-right" style="margin-right: 15px;">Make Payment</button>
+
+      <!-- unpaid -->
+    </div>
+  </div>
+
+</li>
+</ng-template>
+</div>
+</ul>

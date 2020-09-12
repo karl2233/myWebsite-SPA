@@ -15,6 +15,7 @@ import { UserNotificationListComponent } from './user-page/user-notification-lis
 import { AuthGuard } from './_guards/auth.guard';
 import { UserMainPageComponent } from './user-page/user-main-page/user-main-page.component';
 import { AddProjectComponent } from './AdminPage/add-project/add-project.component';
+import { ListItemsComponent } from './user-page/ListItems/ListItems.component';
 
 
 
@@ -49,7 +50,11 @@ component:UserMainPageComponent
   {
     path : 'notificationlist',
     component: UserNotificationListComponent,
-    }
+  },
+  {
+    path:'listitems',
+    component:ListItemsComponent
+  }
 ]
 },
 

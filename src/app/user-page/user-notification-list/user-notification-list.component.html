@@ -6,19 +6,19 @@
     <div *ngIf="item.notificationCheck;else content" class="w3-panel w3-card w3-green" ><h4>{{item.notificationId}}</h4>
 
     <br>
-  </div> 
+  </div>
 
   <ng-template #content><div class="w3-panel w3-card-2 w3-grey" ><h4>{{item.notificationId}}</h4><br></div></ng-template>
-  
+
 </div>
 
 <div class="col-sm-12 outer-spinner" *ngIf="loading" >
     <div class="spinner-border spinner-center"  role="status">
-       
+
     </div>
   </div>
 
-  <div 
+  <div
   infiniteScroll
   [infiniteScrollDistance]="1"
   [infiniteScrollThrottle]="1000"
