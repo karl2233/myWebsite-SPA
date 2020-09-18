@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { HttpHeaders } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { WebSocketAPIService } from '../_services/web-socket-api.service';
 })
 export class UserPageComponent implements OnInit {
   public isCollapsed = true;
-
+  public isToggleOpen = false;
 
   constructor(private webSocketAPI:WebSocketAPIService) { }
 
@@ -22,6 +22,20 @@ export class UserPageComponent implements OnInit {
   onclick(){
   }
 
+  
+  @HostListener('document:click', ['$event.target'])
+  onClick(btn) {
+    if(this.isToggleOpen){
+      this.isToggleOpen = false;
+      this.isCollapsed = true;
+    }
+
+    if(!this.isCollapsed){
+      this.isToggleOpen = true;
+     console.log(this.isCollapsed);
+    }
+  
+ }
  
 
 }

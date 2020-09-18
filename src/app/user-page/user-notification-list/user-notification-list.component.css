@@ -10,3 +10,29 @@
 .outer-spinner{
   text-align: center;
 }
+.warning {
+  margin: auto;
+  width: 60%;
+  border: 3px solid rgb(255, 217, 0);
+  padding: 10px;
+  text-align: center;
+  margin-top: 5%;
+}
+
+.success {
+  margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+  text-align: center;
+  margin-top: 5%;
+}
+
+.scrollspy-example {
+  height: 360px;
+  }
+
+  
+
+
+  

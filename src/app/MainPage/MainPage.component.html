@@ -26,15 +26,15 @@
 
 <nav class ="navbar navbar-expand-lg navbar-dark bg-dark">
 
-  <a class="navbar-brand" href="#">XXXX</a>
+  <a  class="navbar-brand" href="#"routerLink="/">XXXX</a>
   <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]>
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse " id="collapseExample" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto ">
-      <li class="nav-item ">
-        <a class="nav-link parent-fix Toggle" href="#" routerLink="/subscribe"  >Register<span class="material-icons child-fix">
+      <li class="nav-item" (click)="enableDisableRule()" [ngClass]="{'green' : toggle, 'red': !toggle}">
+        <a  class="nav-link parent-fix Toggle"  href="#" routerLink="/subscribe"  >Register<span  class="material-icons child-fix">
           control_point
           </span></a>
      </li>

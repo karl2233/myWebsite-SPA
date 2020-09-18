@@ -24,4 +24,11 @@
     /* position: fixed;
     top: 0; */
   }
-  
+
+  .green {
+    color: green;
+}
+
+.red {
+    color: red;
+}

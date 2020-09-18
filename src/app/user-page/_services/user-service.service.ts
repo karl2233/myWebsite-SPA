@@ -10,6 +10,7 @@ import { NotificationListReq } from '../_model/_req/NotificationListReq';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LastIdResp } from '../_model/_resp/LastIdResp';
 import { ItemCart } from '../_model/_resp/ItemCart';
+import { CheckoutReq } from '../_model/_req/CheckoutReq';
 
 interface notificationElement{
   notificationCheck:boolean;
@@ -32,6 +33,15 @@ interface Item{
   projectName :string;
   projectPayed:boolean;
   projectPrice:number;
+}
+
+interface checkoutStatus{
+  status:checkoutStatusElements;
+}
+
+interface checkoutStatusElements{
+  checkoutStatusReason:string,
+  chekcoutStatus:boolean
 }
 
 @Injectable({
@@ -69,6 +79,11 @@ export class UserServiceService {
       map(resData => {
         const arr = [];
         const lastId = [];
+
+        if(resData.list.length == 0 ){
+          console.log("hello");
+        }
+
          for(let i = 0; i < resData.list.length; i++){
           arr.push(new NotificationElementResp(resData.list[i].notificationHeader,resData.list[i].notificationBody,resData.list[i].notificationId,resData.list[i].notificationCheck,resData.lastId));
          }
@@ -87,7 +102,41 @@ export class UserServiceService {
   });
   }
 
+  getListOfNotificationFirstCall(index:number){
+    const notificationElementReq = new NotificationListReq(this.jwtHelper.decodeToken(localStorage.getItem('token')).sub,index);
+
+    this.http.post<notificationElements>(this.baseUrl+'/getusernotificationlist', { ...notificationElementReq, headers: this.getArgHeaders()})
+    .pipe(
+      map(resData => {
+        const arr = [];
+        const lastId = [];
+
+        if(resData.list.length == 0 ){
+          console.log("hello");
+        }
+
+         for(let i = 0; i < resData.list.length; i++){
+          arr.push(new NotificationElementResp(resData.list[i].notificationHeader,resData.list[i].notificationBody,resData.list[i].notificationId,resData.list[i].notificationCheck,resData.lastId));
+         }
+
+         lastId.push(new LastIdResp(resData.lastId));
+
+        // const currentItems = this._notifications.getValue();
+         this._notifications.next( arr);
+         this._lastId.next(lastId);
+      }),
+      take(1),
+      tap(bookings => {
+      })
+    ).subscribe({
+      error: error => console.error('There was an error!', error)
+  });
+  }
+
+
   getListItem(){
+
+    
     this.http.post<listItem>(this.baseUrl+'/getUserCheckoutList', { observe: 'response',headers: this.getArgHeaders()})
     .pipe(
       map(resData => {
@@ -98,10 +147,11 @@ export class UserServiceService {
           arr.push(new ItemCart(resData.list[i].projectId,resData.list[i].projectName,resData.list[i].projectPayed,resData.list[i].projectPrice));
          }
 
+         
         //  lastId.push(new LastIdResp(resData.lastId));
-
-          const currentItems = this._items.getValue();
-          this._items.next( currentItems.concat(arr));
+         
+          //const currentItems = this._items.getValue();
+          this._items.next(arr);
         //  this._lastId.next(lastId);
       }),
       take(1),
@@ -111,6 +161,29 @@ export class UserServiceService {
       error: error => console.error('There was an error!', error)
   });
   }
+
+  checkout(amount:number,token:string,projectId:number){
+    console.log(token);
+    console.log("#"+amount);
+  const checkoutReq  = new CheckoutReq(amount,token,projectId);
+  console.log(this.baseUrl+'/checkout');
+//checkoutStatus
+return this.http.post<checkoutStatus>(this.baseUrl+'/checkout', {...checkoutReq, observe: 'response',headers: this.getArgHeaders()})
+.pipe(
+  map(resData => {
+    console.log("123");
+    console.log(resData.status.checkoutStatusReason);
+    return resData;
+  }),
+  take(1),
+  tap(bookings => {
+  })
+).subscribe(resData =>{
+console.log(resData);
+});
+    
+  }
+
   private getArgHeaders(): any {
     const httpOptions = {
       headers: new HttpHeaders({

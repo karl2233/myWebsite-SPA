@@ -26,7 +26,6 @@ export class AddProjectComponent implements OnInit {
 }
 
 sendProject(){
-  console.log(this.Notification.value.projectName,this.Notification.value.userName,this.Notification.value.projectPrice)
  this.adminService.sendProjectToUser(this.Notification.value.userName,this.Notification.value.projectName,this.Notification.value.projectPrice).subscribe((data)=>{
   // console.log(data.status);
    error: error => console.error('There was an error!', error)

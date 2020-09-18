@@ -7,11 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageInfoComponent implements OnInit {
 
+  loading:boolean =true ;
   theHtmlString:String;
 
   constructor() { }
 
   ngOnInit() {
+    const that = this;
+    setTimeout(function(){      
+      that.loading = false;
+       }
+    , 2000);
   }
 
 }

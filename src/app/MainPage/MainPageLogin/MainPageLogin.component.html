@@ -2,6 +2,13 @@
 <br>
 <br>
 
+<div class="text-center" *ngIf="loading">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<div *ngIf="!loading">
 <form [formGroup]="loginForm"(ngSubmit)="login()" class="text-center border border-light p-5" action="#!">
 
   <p class="h4 mb-4">Login</p>
@@ -48,3 +55,4 @@
   <!-- Social login -->
 </form>
 
+</div>

@@ -12,7 +12,7 @@ import { RegisterserviceService } from '../_services/registerservice.service';
 })
 export class MainPageRegisterComponent implements OnInit {
 
-
+  loading:boolean =true;
   @Input() valuesFromHome:any;
   @Output() cancelRegister = new EventEmitter();
   registerForm:FormGroup;
@@ -25,6 +25,12 @@ export class MainPageRegisterComponent implements OnInit {
     this.createRegisterForm();
     }
   createRegisterForm(){
+const that = this;
+    setTimeout(function(){      
+      that.loading = false;
+       }
+    , 2000);
+
     this.registerForm = this.fb.group({
       email:new FormControl('',[Validators.required,Validators.pattern(this.emailPattern)]),
       username:new FormControl('',Validators.required),

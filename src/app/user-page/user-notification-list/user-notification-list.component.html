@@ -1,5 +1,6 @@
 
 <br>
+<div *ngIf="listEmpty" class="warning"><p>There are not notification to be shown</p></div>
 <div class="container">
   <div *ngFor="let item of loadedItems">
 
@@ -18,11 +19,12 @@
     </div>
   </div>
 
+</div>
   <div
   infiniteScroll
-  [infiniteScrollDistance]="1"
-  [infiniteScrollThrottle]="1000"
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="1"
   (scrolled)="onScroll()">
 
   </div>
-
+ 

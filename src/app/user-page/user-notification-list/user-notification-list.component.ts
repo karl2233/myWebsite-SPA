@@ -23,24 +23,33 @@ export class UserNotificationListComponent implements OnInit {
  public innerWidth: any;
  public index:number = 0;
  busyLoadingData:boolean = true;
+ listEmpty:boolean = false;
 
   constructor(private userServiceService: UserServiceService,private spinner: NgxSpinnerService) {
     
    }
 
   ngOnInit(): void {
-    this.userServiceService.getListOfNotification(0)
+    this.userServiceService.getListOfNotificationFirstCall(0)
     this.bookingSub =  this.userServiceService.notifications.subscribe( list=>{
+
+      // if(list.length == 0){
+      //   this.listEmpty = true;
+        
+      // }
+      
       this.busyLoadingData = false;
       this.loading = true;
       const that = this;
-      console.log("hello");
       setTimeout(function(){      
         that.loadedItems = list;
         that.loading = false; 
         that.busyLoadingData = true;
+         if(list.length == 0){
+       that.listEmpty = false;
+         }
       }, 2000);
-     
+    
       });
       this.lastSub = this.userServiceService.lastId.subscribe(lastItem=>{
   

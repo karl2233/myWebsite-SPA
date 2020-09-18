@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserMainPageComponent implements OnInit {
 
+  loading:boolean =true ;
+
   constructor() { }
 
   ngOnInit(): void {
+ const that = this;
+    setTimeout(function(){      
+      that.loading = false;
+       }
+    , 2000);
+
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-MainPage',
@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
   public isCollapsed = true;
+  public isToggleOpen = false;
+
+
   constructor() { }
 
   ngOnInit() {
@@ -16,6 +19,30 @@ export class MainPageComponent implements OnInit {
   home(){
 
   }
+
+
+  @HostListener('document:click', ['$event.target'])
+  onClick(btn) {
+    if(this.isToggleOpen){
+      this.isToggleOpen = false;
+      this.isCollapsed = true;
+    }
+
+    if(!this.isCollapsed){
+      this.isToggleOpen = true;
+     console.log(this.isCollapsed);
+    }
+  
+ }
+
+
+ toggle = true;
+status = 'Enable'; 
+
+enableDisableRule() {
+    this.toggle = !this.toggle;
+    this.status = this.toggle ? 'Enable' : 'Disable';
+}
 
 
 }

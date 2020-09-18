@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class MainPageLoginComponent implements OnInit {
 
-
+  loading:boolean =true;
   @Input() valuesFromHome:any;
   @Output() cancelRegister = new EventEmitter();
   loginForm:FormGroup;
@@ -21,6 +21,11 @@ export class MainPageLoginComponent implements OnInit {
   constructor(private registerService:RegisterserviceService,private fb:FormBuilder,private alertify: AlertifyService,private router: Router) {}
 
   ngOnInit() {
+    const that = this;
+    setTimeout(function(){      
+      that.loading = false;
+       }
+    , 2000);
     this.createRegisterForm();
     }
   createRegisterForm(){
