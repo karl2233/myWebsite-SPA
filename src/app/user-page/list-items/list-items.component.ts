@@ -31,8 +31,8 @@ this.userService.getListItem();
   }
 
   openDialog(index:number,price:number): void {
-    
-    const dialogRef = this.dialog.open(CheckoutFormComponent, {
+
+  const dialogRef = this.dialog.open(CheckoutFormComponent, {
    width:"500px",
    height:"130px",
    data:{index,price}

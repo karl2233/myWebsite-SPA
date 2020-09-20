@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as AOS from 'aos';
+
 
 @Component({
   selector: 'app-MainPageInfo',
@@ -13,8 +15,10 @@ export class MainPageInfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    AOS.init();
+
     const that = this;
-    setTimeout(function(){      
+    setTimeout(function(){
       that.loading = false;
        }
     , 2000);

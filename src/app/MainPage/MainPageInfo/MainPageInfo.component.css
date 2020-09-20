@@ -1,12 +1,88 @@
-.card-body{
-  float:left;
-}
-.daizy{
-  margin-left:200px;
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-@media screen and (max-width:600px){
-  .no-overflow{
-      display:none;
-  }
+.hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../../assets/images/0.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.first-text{
+  font-size:37px;
+}
+
+.hero-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  font-size: 80px;
+  border: 10px solid #f1f1f1;
+  position: absolute;
+
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+}
+
+.hero-text button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+
+  color: black;
+  background-color: #ddd;
+  text-align: center;
+  cursor: pointer;
+}
+
+.hero-text button:hover {
+  background-color: #555;
+  color: white;
+}
+.image-resize{
+height:10px;
+width:10px;
+}
+.material-icons.md-48 { font-size: 48px; }
+
+.center {
+  text-align: center;
+}
+.about{
+  font-size:37px;
+}
+
+
+.second-text{
+  font-size:37px;
+}
+
+.second-block {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: black;
+  font-weight: bold;
+  font-size: 80px;
+  border: 10px solid black;
+  position: absolute;
+
+  display: inline-block;
+
+  transform: translate(-50%, -50%);
+
+  width: 100px;
+  padding: 20px;
+  text-align: center;
 }

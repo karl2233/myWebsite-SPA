@@ -6,10 +6,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { UserServiceService } from '../_services/user-service.service';
 
-
-
-
-
 type NewType = CheckoutFormComponent;
 
 @Component({
@@ -20,7 +16,7 @@ type NewType = CheckoutFormComponent;
 export class CheckoutFormComponent implements OnInit {
 
   @ViewChild(StripeCardComponent) card: StripeCardComponent;
- 
+
   cardOptions: StripeCardElementOptions = {
     style: {
       base: {
@@ -39,7 +35,7 @@ export class CheckoutFormComponent implements OnInit {
   elementsOptions: StripeElementsOptions = {
     locale: 'en'
   };
- 
+
   stripeTest: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -58,14 +54,14 @@ export class CheckoutFormComponent implements OnInit {
     });
   }
 
-  
+
   onNoClick(): void {
     this.dialogRef.close();
   }
-  
+
   createToken(): void {
   const that = this;
-  
+
     this.stripeService
       .createToken(this.card.element)
       .subscribe((result) => {
