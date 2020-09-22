@@ -30,7 +30,6 @@ export class MainPageComponent implements OnInit {
 
     if(!this.isCollapsed){
       this.isToggleOpen = true;
-     console.log(this.isCollapsed);
     }
   
  }

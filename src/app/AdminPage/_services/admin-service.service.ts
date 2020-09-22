@@ -109,7 +109,7 @@ export class AdminServiceService {
     )
     .pipe(
       map(resData => {
-        console.log(resData.status);
+    
       })
     )
   }

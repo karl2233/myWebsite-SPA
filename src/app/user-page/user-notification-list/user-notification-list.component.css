@@ -1,7 +1,4 @@
-.container{
-  margin: auto;
-  width: 50%;
-}
+
 .spinner-center{
   display: inline-block;
   margin: 0 auto;
@@ -10,6 +7,7 @@
 .outer-spinner{
   text-align: center;
 }
+
 .warning {
   margin: auto;
   width: 60%;

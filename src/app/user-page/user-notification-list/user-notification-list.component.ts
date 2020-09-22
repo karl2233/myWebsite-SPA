@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { NotificationElementResp } from '../_model/_resp/NotificationElementResp';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UserServiceService } from '../_services/user-service.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LastIdResp } from '../_model/_resp/LastIdResp';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NotificationComponentComponent } from '../notification-component/notification-component.component';
+import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-user-notification-list',
@@ -17,7 +19,7 @@ export class UserNotificationListComponent implements OnInit {
 
   jwtHelper = new JwtHelperService();
 
-  loadedItems:NotificationElementResp[];
+loadedItems:NotificationElementResp[];
  private bookingSub:Subscription;
  private lastId:LastIdResp[];
  private lastSub:Subscription;
@@ -27,19 +29,13 @@ export class UserNotificationListComponent implements OnInit {
  busyLoadingData:boolean = true;
  listEmpty:boolean = false;
 
-  constructor(private userServiceService: UserServiceService,private spinner: NgxSpinnerService,public dialog: MatDialog) {
+  constructor(private userServiceService: UserServiceService,private spinner: NgxSpinnerService,public dialog: MatDialog ,private router: Router,@Inject(DOCUMENT) private _document: Document) {
 
    }
 
   ngOnInit(): void {
     this.userServiceService.getListOfNotificationFirstCall(0)
     this.bookingSub =  this.userServiceService.notifications.subscribe( list=>{
-
-      // if(list.length == 0){
-      //   this.listEmpty = true;
-
-      // }
-
       this.busyLoadingData = false;
       this.loading = true;
       const that = this;
@@ -59,13 +55,6 @@ export class UserNotificationListComponent implements OnInit {
           });
 
       this.innerWidth = window.innerWidth;
-
-
-    //  console.log(this.loadedItems[this.loadedItems.length - 1]);
-      // if(this.loadedItems[this.loadedItems.length - 1].notificationId == this.lastId[0].lastId ){
-      //   console.log("karl");
-      //   this.loading = false;
-      // }
   }
           onScroll(){
             if(this.busyLoadingData){
@@ -81,12 +70,27 @@ export class UserNotificationListComponent implements OnInit {
         }
 
         openDialog(header:string,body:string,id:number): void {
+    
+          const dialogConfig = new MatDialogConfig();
+          dialogConfig.disableClose = true;
+          dialogConfig.data = {header,body,id};
+          dialogConfig.width = "370px";
+          dialogConfig.height = "500px";
 
-          const dialogRef = this.dialog.open(NotificationComponentComponent, {
-           width:"750px",
-           height:"500px",
-           data:{header,body,id}
-            });
+          const dialogRef = this.dialog.open(NotificationComponentComponent, dialogConfig);
+   const that = this;
+          dialogRef.afterClosed()
+.subscribe(() => {
+for(let i = 0; i < this.loadedItems.length; i++){ 
+ if(that.loadedItems[i].notificationId == id){
+  that.loadedItems[i].notificationCheck = true;
+ }
+  }
+ 
+  });
+
+
+
         }
 
 

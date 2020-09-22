@@ -5,6 +5,7 @@ import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { UserServiceService } from '../_services/user-service.service';
+import { Router } from '@angular/router';
 
 type NewType = CheckoutFormComponent;
 
@@ -43,12 +44,12 @@ export class CheckoutFormComponent implements OnInit {
     private stripeService: StripeService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private alertify: AlertifyService,
-    private userService: UserServiceService) {
+    private userService: UserServiceService
+    ,private router: Router) {
       dialogRef.disableClose = true;
     }
 
   ngOnInit(): void {
-    console.log(this.data.index);
     this.stripeTest = this.fb.group({
       name: ['', [Validators.required]]
     });
@@ -57,6 +58,7 @@ export class CheckoutFormComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+    
   }
 
   createToken(): void {
@@ -67,13 +69,9 @@ export class CheckoutFormComponent implements OnInit {
       .subscribe((result) => {
         if (result.token) {
          const token = result.token;
-         console.log(this.data.price+"#");
-        console.log(this.data.index+"#");
-        console.log(token.id+"#");
           this.userService.checkout(this.data.price,token.id,this.data.index);
         } else if (result.error) {
           this.alertify.error("Something went wrong");
-          console.log(result.error.message);
         }
       });
   }

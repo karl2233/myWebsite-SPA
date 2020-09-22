@@ -36,6 +36,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+
+
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -62,6 +64,7 @@ export function tokenGetter() {
 
       ListItemsComponent
    ],
+   
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -90,7 +93,7 @@ export function tokenGetter() {
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [ConfirmRegisteResolver ,{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
+  providers: [ConfirmRegisteResolver ,{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

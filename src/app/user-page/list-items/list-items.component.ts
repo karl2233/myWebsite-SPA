@@ -5,6 +5,8 @@ import { ItemCart } from '../_model/_resp/ItemCart';
 
 import { CheckoutFormComponent } from '../checkout-form/checkout-form.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-items',
@@ -37,6 +39,10 @@ this.userService.getListItem();
    height:"130px",
    data:{index,price}
     });
+
+  dialogRef.afterClosed().pipe(
+      finalize(() => {console.log("finish")})
+    );
 }
 
 }

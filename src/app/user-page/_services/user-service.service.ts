@@ -12,6 +12,10 @@ import { LastIdResp } from '../_model/_resp/LastIdResp';
 import { ItemCart } from '../_model/_resp/ItemCart';
 import { CheckoutReq } from '../_model/_req/CheckoutReq';
 
+interface notificationCheck{
+  status : number;
+}
+
 interface notificationElement{
   notificationCheck:boolean;
   notificationHeader:string;
@@ -81,7 +85,6 @@ export class UserServiceService {
         const lastId = [];
 
         if(resData.list.length == 0 ){
-          console.log("hello");
         }
 
          for(let i = 0; i < resData.list.length; i++){
@@ -112,7 +115,6 @@ export class UserServiceService {
         const lastId = [];
 
         if(resData.list.length == 0 ){
-          console.log("hello");
         }
 
          for(let i = 0; i < resData.list.length; i++){
@@ -135,14 +137,11 @@ export class UserServiceService {
 
 
   getListItem(){
-
-    
     this.http.post<listItem>(this.baseUrl+'/getUserCheckoutList', { observe: 'response',headers: this.getArgHeaders()})
     .pipe(
       map(resData => {
         const arr = [];
         const lastId = [];
-        console.log(resData);
          for(let i = 0; i < resData.list.length; i++){
           arr.push(new ItemCart(resData.list[i].projectId,resData.list[i].projectName,resData.list[i].projectPayed,resData.list[i].projectPrice));
          }
@@ -162,27 +161,36 @@ export class UserServiceService {
   });
   }
 
-  checkout(amount:number,token:string,projectId:number){
-    console.log(token);
-    console.log("#"+amount);
-  const checkoutReq  = new CheckoutReq(amount,token,projectId);
-  console.log(this.baseUrl+'/checkout');
-//checkoutStatus
-return this.http.post<checkoutStatus>(this.baseUrl+'/checkout', {...checkoutReq, observe: 'response',headers: this.getArgHeaders()})
-.pipe(
-  map(resData => {
-    console.log("123");
-    console.log(resData.status.checkoutStatusReason);
-    return resData;
-  }),
-  take(1),
-  tap(bookings => {
-  })
-).subscribe(resData =>{
-console.log(resData);
-});
-    
-  }
+    checkout(amount:number,token:string,projectId:number){
+      const checkoutReq  = new CheckoutReq(amount,token,projectId);
+    //checkoutStatus
+    return this.http.post<checkoutStatus>(this.baseUrl+'/checkout', {...checkoutReq, observe: 'response',headers: this.getArgHeaders()})
+    .pipe(
+      map(resData => {
+        return resData;
+      }),
+      take(1),
+      tap(bookings => {
+      })
+    ).subscribe(resData =>{
+    });
+        
+      }
+
+      checkNotification(notificationId){
+        // let params = new HttpParams();
+        // params = params.append('_page', 1);
+        // params = params.append('_limit', 10);
+        return this.http.get<notificationCheck>(this.baseUrl+"/notification/"+notificationId)
+        .pipe(
+          map(resData => {
+            return resData
+          }),
+          take(1),
+          tap(bookings => {
+          })
+        );
+      }
 
   private getArgHeaders(): any {
     const httpOptions = {

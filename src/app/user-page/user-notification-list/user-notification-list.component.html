@@ -2,17 +2,18 @@
 <br>
 <div *ngIf="listEmpty" class="warning"><p>There are not notification to be shown</p></div>
 
-<div class="container">
+<div class="container" >
 <ul class="list-group">
   <div *ngFor="let item of loadedItems">
 
-    <li class="list-group-item" *ngIf="false;else content">
+    <li class="list-group-item" *ngIf="item.notificationCheck;else content">
 
       <div class="card " >
         <div class="card-body">
           <h2 class="card-title"> {{item.notificationHeader}}</h2>
+       
 
-          <button type="button" (click)="openDialog(item.notificationHeader,item.notificationBody,item.notificationId)" class="btn btn-secondary float-right">Read Notification</button>
+          <button type="button" (click)="openDialog(item.notificationHeader,item.notificationBody,item.notificationId)" class="btn btn-secondary float-right"style="margin-right: 15px;">Read Notification</button>
         </div>
       </div>
   </li>
@@ -20,12 +21,13 @@
   <ng-template #content>
      <li class="list-group-item">
 
-    <div class="card ">
+    <div class="card">
       <div class="card-body">
         <h2 class="card-title"> {{item.notificationHeader}}</h2>
+        
 
 
-        <button type="button" (click)="openDialog(item.notificationHeader,item.notificationBody,item.notificationId)" class="btn btn-success float-right" style="margin-right: 15px;">Make Payment</button>
+        <button type="button" (click)="openDialog(item.notificationHeader,item.notificationBody,item.notificationId)" class="btn btn-success float-right"style="margin-right: 15px;">Read Notification</button>
 
         <!-- unpaid -->
       </div>

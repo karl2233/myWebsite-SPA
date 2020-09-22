@@ -29,7 +29,7 @@ export class SendNotificationComponent implements OnInit {
 
   sendNotification(){
 this.adminService.sendNotification(this.Notification.value.notificationTitle,this.Notification.value.notificationBody).subscribe((data)=>{
-  console.log(data.status);
+
   error: error => console.error('There was an error!', error)
 });
 this.webSocketAPI._send("daisy");
